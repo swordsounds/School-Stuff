@@ -13,8 +13,6 @@
 
 from guizero import *
 
-def counter(imacry, x):
-         imacry.value = int(x)
 
 def food_window():
     window = Window(main_app, title="New Window",width=400, height=400,visible=True)
