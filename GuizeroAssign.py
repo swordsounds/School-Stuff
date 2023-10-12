@@ -21,7 +21,8 @@ def food_window():
     text_info = Text(window, f_name.value)
     text_info = Text(window, l_name.value)
     text_info = Text(window, gr_lvl.value)
-    choice = ButtonGroup(window, options=["Drink", "Dessert", "Food"], selected="None")
+    choice_lunch = ButtonGroup(window, options=["Bread", "Toast", "French Toast"], selected="None")
+    choice_sndry = ButtonGroup(window, options=["Drink", "Dessert", "Condements"], selected="None")
     next_btn = PushButton(window, text="Next", padx=100, pady=10, command=payment_window)
 
 def payment_window():
@@ -30,7 +31,7 @@ def payment_window():
     payment_optns = Combo(window, options=["None Selected", "Credit", "Debit", "Cash"], selected="None Selected")
     picture = Picture(window, image="assets\dessert.png")
     picture = Picture(window, image="assets\drink.png")
-    picture = Picture(window, image="assets\dinner.png")
+    picture = Picture(window, image="assets\ketchup.png")
 
 
 main_app = App(title="main", width=400, height=400, layout="grid")
