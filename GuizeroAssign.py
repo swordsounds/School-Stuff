@@ -21,7 +21,7 @@ def food_window():
     text_info = Text(window, f_name.value)
     text_info = Text(window, l_name.value)
     text_info = Text(window, gr_lvl.value)
-    choice = ButtonGroup(window, options=["Drink", "Desert", "Food"], selected="None")
+    choice = ButtonGroup(window, options=["Drink", "Dessert", "Food"], selected="None")
     next_btn = PushButton(window, text="Next", padx=100, pady=10, command=payment_window)
 
 def payment_window():
