@@ -1,12 +1,13 @@
-from guizero import App, Text
+from guizero import App, Text, Slider
 
 # Action you would like to perform
 def counter():
-    text.value = int(text.value) + 1
+    text.value = int(slider.value)
 
 app = App("Hello world")
 text = Text(app, text="1")
-text.repeat(1000, counter)  # Schedule call to counter() every 1000ms
+slider = Slider(app, start=1, end=5)
+text.repeat(10, counter)  # Schedule call to counter() every 1000ms
 app.display()
 
 

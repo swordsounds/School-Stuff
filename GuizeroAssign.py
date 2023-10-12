@@ -13,36 +13,40 @@
 
 from guizero import *
 
-def foodWindow():
-    window = Window(main_app, title="Food",width=400, height=400, layout="grid")
-    food_button = PushButton(main_app, text="Next",grid=[1, 4],padx=100, pady=10, enabled=False)
-    drink = CheckBox(window, text="Add Drink",grid=[0, 0])
-    food = CheckBox(window, text="Add Food",grid=[0, 1])
-    desert = CheckBox(window, text="Add Desert", grid=[0, 2])
-    window_button = PushButton(window, text="Next", grid=[1, 4],command=moneyWindow, padx=100, pady=10)
+def counter(imacry, x):
+         imacry.value = int(x)
+
+def food_window():
+    window = Window(main_app, title="New Window",width=400, height=400,visible=True)
+    text_info = Text(window, f_name.value)
+    text_info = Text(window, l_name.value)
+    text_info = Text(window, gr_lvl.value)
+    choice = ButtonGroup(window, options=["Drink", "Desert", "Food"], selected="None")
+    next_btn = PushButton(window, text="Next", padx=100, pady=10, command=payment_window)
+
+def payment_window():
+    window = Window(main_app, title="Summary",width=400, height=400,visible=True)
+    slider = Slider(window, start=1, end=5, grid=[0,5])
+    payment_optns = Combo(window, options=["None Selected", "Credit", "Debit", "Cash"], selected="None Selected")
+    picture = Picture(window, image="guizero.png")
 
 
-def moneyWindow():
-    money_window = Window(window, title="Summary", width=400, height=400, layout="grid")
-    payment_options = Combo(money_window, options=["Select", "Cash", "Debit", "Credit"], grid=[0, 0])
-    tip_slider = Slider(money_window, start=1, end=5, grid=[0, 1])
-    text = Text(money_window, text=tip_slider.value, grid=[1, 0])
-    text.repeat(1000, counter)
-def counter():
-    return
-    
 main_app = App(title="main", width=400, height=400, layout="grid")
-window = Window(main_app, visible=False)
 
-text = Text(main_app, text="First Name", grid=[0, 0])
-text = Text(main_app, text="Last Name", grid=[0, 1])
-text = Text(main_app, text="Grade Level", grid=[0, 2])
+
+
+text_FN = Text(main_app, text="First Name", grid=[0, 0])
+text_LN = Text(main_app, text="Last Name", grid=[0, 1])
+text_GR = Text(main_app, text="Grade Level", grid=[0, 2])
+text = Text(main_app, grid=[0, 6])
 
 f_name = TextBox(main_app, grid=[1, 0])
 l_name = TextBox(main_app, grid=[1, 1])
 gr_lvl = TextBox(main_app, grid=[1, 2])
 
-food_button = PushButton(main_app, text="Next", grid=[1, 4],command=foodWindow, padx=100, pady=10)
+food_button = PushButton(main_app, text="Next", grid=[1, 4],command=food_window, padx=100, pady=10)
+
+
 
 
 
