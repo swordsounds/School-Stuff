@@ -1,2 +1,2 @@
-from guizero import App
+from guizero import App, Text, PushButton
 
