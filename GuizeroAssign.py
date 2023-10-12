@@ -28,7 +28,7 @@ def payment_window():
     window = Window(main_app, title="Summary",width=400, height=400,visible=True)
     slider = Slider(window, start=1, end=5, grid=[0,5])
     payment_optns = Combo(window, options=["None Selected", "Credit", "Debit", "Cash"], selected="None Selected")
-    picture = Picture(window, image="guizero.png")
+    picture = Picture(window, image="assets\dessert.png")
 
 
 main_app = App(title="main", width=400, height=400, layout="grid")
