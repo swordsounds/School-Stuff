@@ -14,6 +14,7 @@
 from guizero import *
 
 
+
 def food_window():
     window = Window(main_app, title="New Window",width=400, height=400,visible=True)
     text_info = Text(window, f_name.value)
@@ -22,6 +23,8 @@ def food_window():
     choice_lunch = ButtonGroup(window, options=["Bread", "Toast", "French Toast"], selected="None")
     choice_sndry = ButtonGroup(window, options=["Drink", "Dessert", "Condements"], selected="None")
     next_btn = PushButton(window, text="Next", padx=100, pady=10, command=payment_window)
+    main_app.hide()
+    window.show()
 
 def payment_window():
     window = Window(main_app, title="Summary",width=400, height=400,visible=True)
