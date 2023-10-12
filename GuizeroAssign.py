@@ -27,7 +27,10 @@ def moneyWindow():
     payment_options = Combo(money_window, options=["Select", "Cash", "Debit", "Credit"], grid=[0, 0])
     tip_slider = Slider(money_window, start=1, end=5, grid=[0, 1])
     text = Text(money_window, text=tip_slider.value, grid=[1, 0])
-
+    text.repeat(1000, counter)
+def counter():
+    return
+    
 main_app = App(title="main", width=400, height=400, layout="grid")
 window = Window(main_app, visible=False)
 
