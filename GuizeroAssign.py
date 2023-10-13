@@ -43,7 +43,7 @@ def summary_window():
         add_cost_primary = 2
         piece_french_toast.show()
     else:
-        add_cost_sndry = 0
+        add_cost_primary = 0
         text = Text(summary, "None Selected")
     if choice_sndry.value == "Dessert":
         add_cost_sndry = 5
@@ -59,13 +59,13 @@ def summary_window():
         text = Text(summary, "None Selected")
     pay_method = Text(summary, text=f"Payment Method: {payment_optns.value}")
     total = Text(summary, text=f"Total: {int(slider.value) + add_cost_sndry + add_cost_primary}")
-    text_choice_lunch = Text(summary, choice_lunch.value)
-    text_choice_sndry = Text(summary, choice_sndry.value)
+    text_choice_lunch = Text(summary, f"Main Dish: {choice_lunch.value}")
+    text_choice_sndry = Text(summary, f"Optional Dish: {choice_sndry.value}")
     payment.hide()
     summary.show()
 
 
-main_app = App(title="main", width=400, height=400, layout="grid")
+main_app = App(title="Info", width=400, height=400, layout="grid")
 text_FN = Text(main_app, text="First Name", grid=[0, 0])
 text_LN = Text(main_app, text="Last Name", grid=[0, 1])
 text_GR = Text(main_app, text="Grade Level", grid=[0, 2])
@@ -76,7 +76,7 @@ gr_lvl = TextBox(main_app, grid=[1, 2])
 next_btn = PushButton(main_app, text="Next", grid=[1, 4],command=info_window, padx=100, pady=10)
 
 # Info window
-information = Window(main_app, title="Information", width=400, height=400, visible=False)
+information = Window(main_app, title="Info Summary", width=400, height=400, visible=False)
 next_btn = PushButton(information, text="Next", padx=100, pady=10, command=options_window)
 
 # Lunch Options window
@@ -98,7 +98,7 @@ next_btn = PushButton(payment, text="Next", padx=100, pady=10, command=summary_w
 #Summary window
 summary = Window(main_app, title="Summary", width=400, height=400,visible=False)
 
-
+#images
 dessert = Picture(summary, image="assets\dessert.png", width=100, height=100, visible=False)
 drink = Picture(summary, image="assets\drink.png", width=100, height=100, visible=False)
 ketchup = Picture(summary, image="assets\ketchup.png", width=100, height=100, visible=False)
