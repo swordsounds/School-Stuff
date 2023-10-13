@@ -14,6 +14,9 @@
 from guizero import *
 
 def info_window():
+    text_info = Text(information, f_name.value)
+    text_info = Text(information, l_name.value)
+    text_info = Text(information, gr_lvl.value)
     main_app.hide()
     information.show()
 
@@ -38,9 +41,6 @@ next_btn = PushButton(main_app, text="Next", grid=[1, 4],command=info_window, pa
 
 # Info window
 information = Window(main_app, title="Information", width=400, height=400, visible=False)
-text_info = Text(information, f_name.value)
-text_info = Text(information, l_name.value)
-text_info = Text(information, gr_lvl.value)
 next_btn = PushButton(information, text="Next", padx=100, pady=10, command=options_window)
 # Options window
 options = Window(main_app, title="Options",width=400, height=400,visible=False)
