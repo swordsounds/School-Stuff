@@ -33,24 +33,32 @@ def payment_window():
     payment.show()
 
 def summary_window():
-    pay_method = Text(summary, text=f"Payment Method: {payment_optns.value}")
-    total = Text(summary, text=f"Total: {int(slider.value) + int(slider.value)}")
     if choice_lunch.value == "Bread":
+        add_cost_primary = 30
         loaf.show()
     elif choice_lunch.value == "Toast":
+        add_cost_primary = 80
         piece_toast.show()
     elif choice_lunch.value == "French Toast":
+        add_cost_primary = 2
         piece_french_toast.show()
     else:
+        add_cost_sndry = 0
         text = Text(summary, "None Selected")
-    if text_choice_sndry.value == "Dessert":
+    if choice_sndry.value == "Dessert":
+        add_cost_sndry = 5
         dessert.show()
-    elif text_choice_sndry.value == "Drink":
+    elif choice_sndry.value == "Drink":
+        add_cost_sndry = 7
         drink.show()
-    elif text_choice_sndry.value == "Condements":
+    elif choice_sndry.value == "Condements":
+        add_cost_sndry= 20
         ketchup.show()
     else:
+        add_cost_sndry = 0
         text = Text(summary, "None Selected")
+    pay_method = Text(summary, text=f"Payment Method: {payment_optns.value}")
+    total = Text(summary, text=f"Total: {int(slider.value) + add_cost_sndry + add_cost_primary}")
     text_choice_lunch = Text(summary, choice_lunch.value)
     text_choice_sndry = Text(summary, choice_sndry.value)
     payment.hide()
@@ -73,12 +81,12 @@ next_btn = PushButton(information, text="Next", padx=100, pady=10, command=optio
 
 # Lunch Options window
 options = Window(main_app, title="Options",width=400, height=400,visible=False)
-choice_lunch = ButtonGroup(options, options=["Bread", "Toast", "French Toast"], selected="None")
+choice_lunch = ButtonGroup(options, options=["None","Bread", "Toast", "French Toast"], selected="None")
 next_btn = PushButton(options, text="Next", padx=100, pady=10, command=optional_window)
 
 # Optional options window
 optional = Window(main_app, title="Optional",width=400, height=400,visible=False)
-choice_sndry = ButtonGroup(optional, options=["Drink", "Dessert", "Condements"], selected="None")
+choice_sndry = ButtonGroup(optional, options=["None", "Drink", "Dessert", "Condements"], selected="None")
 next_btn = PushButton(optional, text="Next", padx=100, pady=10, command=payment_window)
 
 # Payment window
