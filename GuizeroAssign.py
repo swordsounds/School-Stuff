@@ -23,9 +23,37 @@ def info_window():
 def options_window():
     information.hide()
     options.show()
+    
+def optional_window():
+    options.hide()
+    optional.show()
 
 def payment_window():
-    options.hide()
+    optional.hide()
+    payment.show()
+
+def summary_window():
+    pay_method = Text(summary, text=f"Payment Method: {payment_optns.value}")
+    total = Text(summary, text=f"Total: {int(slider.value) + int(slider.value)}")
+    if choice_lunch.value == "Bread":
+        loaf.show()
+    elif choice_lunch.value == "Toast":
+        piece_toast.show()
+    elif choice_lunch.value == "French Toast":
+        piece_french_toast.show()
+    else:
+        text = Text(summary, "None Selected")
+    if text_choice_sndry.value == "Dessert":
+        dessert.show()
+    elif text_choice_sndry.value == "Drink":
+        drink.show()
+    elif text_choice_sndry.value == "Condements":
+        ketchup.show()
+    else:
+        text = Text(summary, "None Selected")
+    text_choice_lunch = Text(summary, choice_lunch.value)
+    text_choice_sndry = Text(summary, choice_sndry.value)
+    payment.hide()
     summary.show()
 
 
@@ -42,20 +70,33 @@ next_btn = PushButton(main_app, text="Next", grid=[1, 4],command=info_window, pa
 # Info window
 information = Window(main_app, title="Information", width=400, height=400, visible=False)
 next_btn = PushButton(information, text="Next", padx=100, pady=10, command=options_window)
-# Options window
+
+# Lunch Options window
 options = Window(main_app, title="Options",width=400, height=400,visible=False)
 choice_lunch = ButtonGroup(options, options=["Bread", "Toast", "French Toast"], selected="None")
-choice_sndry = ButtonGroup(options, options=["Drink", "Dessert", "Condements"], selected="None")
-next_btn = PushButton(options, text="Next", padx=100, pady=10, command=payment_window)
+next_btn = PushButton(options, text="Next", padx=100, pady=10, command=optional_window)
+
+# Optional options window
+optional = Window(main_app, title="Optional",width=400, height=400,visible=False)
+choice_sndry = ButtonGroup(optional, options=["Drink", "Dessert", "Condements"], selected="None")
+next_btn = PushButton(optional, text="Next", padx=100, pady=10, command=payment_window)
 
 # Payment window
-summary = Window(main_app, title="Summary",width=400, height=400,visible=False)
-slider = Slider(summary, start=1, end=5, grid=[0,5])
-payment_optns = Combo(summary, options=["None Selected", "Credit", "Debit", "Cash"], selected="None Selected")
-picture = Picture(summary, image="assets\dessert.png", width=100, height=100)
-picture = Picture(summary, image="assets\drink.png", width=100, height=100)
-picture = Picture(summary, image="assets\ketchup.png", width=100, height=100)
+payment = Window(main_app, title="Payment",width=400, height=400,visible=False)
+slider = Slider(payment, start=1, end=5, grid=[0,5])
+payment_optns = Combo(payment, options=["None Selected", "Credit", "Debit", "Cash"], selected="None Selected")
+next_btn = PushButton(payment, text="Next", padx=100, pady=10, command=summary_window)
 
+#Summary window
+summary = Window(main_app, title="Summary", width=400, height=400,visible=False)
+
+
+dessert = Picture(summary, image="assets\dessert.png", width=100, height=100, visible=False)
+drink = Picture(summary, image="assets\drink.png", width=100, height=100, visible=False)
+ketchup = Picture(summary, image="assets\ketchup.png", width=100, height=100, visible=False)
+loaf = Picture(summary, image="assets\loaf.png", width=100, height=100, visible=False)
+piece_toast = Picture(summary, image="assets\piece_toast.png", width=100, height=100, visible=False)
+piece_french_toast = Picture(summary, image="assets\piece_french_toast.png", width=100, height=100, visible=False)
 
 
 
