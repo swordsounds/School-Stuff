@@ -13,44 +13,48 @@
 
 from guizero import *
 
-
-
-def food_window():
-    window = Window(main_app, title="New Window",width=400, height=400,visible=True)
-    text_info = Text(window, f_name.value)
-    text_info = Text(window, l_name.value)
-    text_info = Text(window, gr_lvl.value)
-    choice_lunch = ButtonGroup(window, options=["Bread", "Toast", "French Toast"], selected="None")
-    choice_sndry = ButtonGroup(window, options=["Drink", "Dessert", "Condements"], selected="None")
-    next_btn = PushButton(window, text="Next", padx=100, pady=10, command=payment_window)
+def info_window():
     main_app.hide()
-    window.show()
+    information.show()
+
+def options_window():
+    information.hide()
+    options.show()
 
 def payment_window():
-    window = Window(main_app, title="Summary",width=400, height=400,visible=True)
-    slider = Slider(window, start=1, end=5, grid=[0,5])
-    payment_optns = Combo(window, options=["None Selected", "Credit", "Debit", "Cash"], selected="None Selected")
-    picture = Picture(window, image="assets\dessert.png", width=100, height=100)
-    picture = Picture(window, image="assets\drink.png", width=100, height=100)
-    picture = Picture(window, image="assets\ketchup.png", width=100, height=100)
+    options.hide()
+    summary.show()
 
 
 main_app = App(title="main", width=400, height=400, layout="grid")
-
-
-
 text_FN = Text(main_app, text="First Name", grid=[0, 0])
 text_LN = Text(main_app, text="Last Name", grid=[0, 1])
 text_GR = Text(main_app, text="Grade Level", grid=[0, 2])
 text = Text(main_app, grid=[0, 6])
-
 f_name = TextBox(main_app, grid=[1, 0])
 l_name = TextBox(main_app, grid=[1, 1])
 gr_lvl = TextBox(main_app, grid=[1, 2])
+next_btn = PushButton(main_app, text="Next", grid=[1, 4],command=info_window, padx=100, pady=10)
 
-food_button = PushButton(main_app, text="Next", grid=[1, 4],command=food_window, padx=100, pady=10)
+# Info window
+information = Window(main_app, title="Information", width=400, height=400, visible=False)
+text_info = Text(information, f_name.value)
+text_info = Text(information, l_name.value)
+text_info = Text(information, gr_lvl.value)
+next_btn = PushButton(information, text="Next", padx=100, pady=10, command=options_window)
+# Options window
+options = Window(main_app, title="Options",width=400, height=400,visible=False)
+choice_lunch = ButtonGroup(options, options=["Bread", "Toast", "French Toast"], selected="None")
+choice_sndry = ButtonGroup(options, options=["Drink", "Dessert", "Condements"], selected="None")
+next_btn = PushButton(options, text="Next", padx=100, pady=10, command=payment_window)
 
-
+# Payment window
+summary = Window(main_app, title="Summary",width=400, height=400,visible=False)
+slider = Slider(summary, start=1, end=5, grid=[0,5])
+payment_optns = Combo(summary, options=["None Selected", "Credit", "Debit", "Cash"], selected="None Selected")
+picture = Picture(summary, image="assets\dessert.png", width=100, height=100)
+picture = Picture(summary, image="assets\drink.png", width=100, height=100)
+picture = Picture(summary, image="assets\ketchup.png", width=100, height=100)
 
 
 
