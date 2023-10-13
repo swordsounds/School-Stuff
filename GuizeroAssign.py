@@ -14,9 +14,10 @@
 from guizero import *
 
 def info_window():
-    text_info = Text(information, f_name.value)
-    text_info = Text(information, l_name.value)
-    text_info = Text(information, gr_lvl.value)
+    text_info = Text(information, f"First Name: {f_name.value}")
+    text_info = Text(information, f"Last Name: {l_name.value}")
+    text_info = Text(information, f" Grade Level: {gr_lvl.value}")
+    next_btn = PushButton(information, text="Next", padx=100, pady=10, command=options_window)
     main_app.hide()
     information.show()
 
@@ -32,6 +33,9 @@ def payment_window():
     optional.hide()
     payment.show()
 
+def close_window():
+    summary.hide()
+
 def summary_window():
     if choice_lunch.value == "Bread":
         add_cost_primary = 30
@@ -44,7 +48,6 @@ def summary_window():
         piece_french_toast.show()
     else:
         add_cost_primary = 0
-        text = Text(summary, "None Selected")
     if choice_sndry.value == "Dessert":
         add_cost_sndry = 5
         dessert.show()
@@ -56,19 +59,20 @@ def summary_window():
         ketchup.show()
     else:
         add_cost_sndry = 0
-        text = Text(summary, "None Selected")
+
     pay_method = Text(summary, text=f"Payment Method: {payment_optns.value}")
     total = Text(summary, text=f"Total: {int(slider.value) + add_cost_sndry + add_cost_primary}")
     text_choice_lunch = Text(summary, f"Main Dish: {choice_lunch.value}")
     text_choice_sndry = Text(summary, f"Optional Dish: {choice_sndry.value}")
+    next_btn = PushButton(summary, text="Close", grid=[1, 4],command=close_window, padx=100, pady=10)
     payment.hide()
     summary.show()
 
 
 main_app = App(title="Info", width=400, height=400, layout="grid")
-text_FN = Text(main_app, text="First Name", grid=[0, 0])
-text_LN = Text(main_app, text="Last Name", grid=[0, 1])
-text_GR = Text(main_app, text="Grade Level", grid=[0, 2])
+text_FN = Text(main_app, text="First Name:", grid=[0, 0])
+text_LN = Text(main_app, text="Last Name:", grid=[0, 1])
+text_GR = Text(main_app, text="Grade Level:", grid=[0, 2])
 text = Text(main_app, grid=[0, 6])
 f_name = TextBox(main_app, grid=[1, 0])
 l_name = TextBox(main_app, grid=[1, 1])
@@ -77,16 +81,16 @@ next_btn = PushButton(main_app, text="Next", grid=[1, 4],command=info_window, pa
 
 # Info window
 information = Window(main_app, title="Info Summary", width=400, height=400, visible=False)
-next_btn = PushButton(information, text="Next", padx=100, pady=10, command=options_window)
+
 
 # Lunch Options window
 options = Window(main_app, title="Options",width=400, height=400,visible=False)
-choice_lunch = ButtonGroup(options, options=["None","Bread", "Toast", "French Toast"], selected="None")
+choice_lunch = ButtonGroup(options, options=["None Selected","Bread", "Toast", "French Toast"], selected="None Selected")
 next_btn = PushButton(options, text="Next", padx=100, pady=10, command=optional_window)
 
 # Optional options window
 optional = Window(main_app, title="Optional",width=400, height=400,visible=False)
-choice_sndry = ButtonGroup(optional, options=["None", "Drink", "Dessert", "Condements"], selected="None")
+choice_sndry = ButtonGroup(optional, options=["None Selected", "Drink", "Dessert", "Condements"], selected="None Selected")
 next_btn = PushButton(optional, text="Next", padx=100, pady=10, command=payment_window)
 
 # Payment window
