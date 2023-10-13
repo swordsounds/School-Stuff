@@ -103,12 +103,14 @@ next_btn = PushButton(payment, text="Next", padx=100, pady=10, command=summary_w
 summary = Window(main_app, title="Summary", width=400, height=400,visible=False)
 
 #images
-dessert = Picture(summary, image="assets\dessert.png", width=100, height=100, visible=False)
-drink = Picture(summary, image="assets\drink.png", width=100, height=100, visible=False)
-ketchup = Picture(summary, image="assets\ketchup.png", width=100, height=100, visible=False)
 loaf = Picture(summary, image="assets\loaf.png", width=100, height=100, visible=False)
 piece_toast = Picture(summary, image="assets\piece_toast.png", width=100, height=100, visible=False)
 piece_french_toast = Picture(summary, image="assets\piece_french_toast.png", width=100, height=100, visible=False)
+
+dessert = Picture(summary, image="assets\dessert.png", width=100, height=100, visible=False)
+drink = Picture(summary, image="assets\drink.png", width=100, height=100, visible=False)
+ketchup = Picture(summary, image="assets\ketchup.png", width=100, height=100, visible=False)
+
 
 
 
