@@ -1,16 +1,3 @@
-# Allows the user to complete a fillable form (TextBox) seeking the following information - First Name, Last Name, and Their Grade Level
-# This information must then be displayed in a new Window - the new Window must have a PushButton that closes the new info summary Window
-# A ButtonGroup should be displayed that gives the user the opportunity to select 1 of 3 lunch options
-# A 'next' PushButton should be used to forward the user to the 'optional items' menu in a new Window.
-# This 'optional items menu needs to be the form of a CheckBox, and it should contain at least 3 items (Drink, Desert, etc,)
-# Another 'next' PushButton should be used to forward the user to the 'pay options' menu in a new Window (Cash, Debit, Credit) -
-
-# This menu should be in the form of a Combo Widget
-# The program must have a Slider Widget that allows the user to select a tip between $1 and $5.
-# The payment option they select should result in an appropriate text response that communicates the total that they owe.
-# When you user has completed the entire GUI form, a picture should display, showing their food choice, and the total cost of their meal.
-
-
 from guizero import *
 
 def info_window():
@@ -61,7 +48,7 @@ def summary_window():
         add_cost_sndry = 0
 
     pay_method = Text(summary, text=f"Payment Method: {payment_optns.value}")
-    total = Text(summary, text=f"Total: {int(slider.value) + add_cost_sndry + add_cost_primary}")
+    total = Text(summary, text=f"Total: ${int(slider.value) + add_cost_sndry + add_cost_primary}")
     text_choice_lunch = Text(summary, f"Main Dish: {choice_lunch.value}")
     text_choice_sndry = Text(summary, f"Optional Dish: {choice_sndry.value}")
     next_btn = PushButton(summary, text="Close", grid=[1, 4],command=close_window, padx=100, pady=10)
@@ -106,7 +93,6 @@ summary = Window(main_app, title="Summary", width=400, height=400,visible=False)
 loaf = Picture(summary, image="assets\loaf.png", width=100, height=100, visible=False)
 piece_toast = Picture(summary, image="assets\piece_toast.png", width=100, height=100, visible=False)
 piece_french_toast = Picture(summary, image="assets\piece_french_toast.png", width=100, height=100, visible=False)
-
 dessert = Picture(summary, image="assets\dessert.png", width=100, height=100, visible=False)
 drink = Picture(summary, image="assets\drink.png", width=100, height=100, visible=False)
 ketchup = Picture(summary, image="assets\ketchup.png", width=100, height=100, visible=False)
