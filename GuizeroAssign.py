@@ -81,10 +81,12 @@ choice_sndry = ButtonGroup(optional, options=["None Selected", "Drink", "Dessert
 next_btn = PushButton(optional, text="Next", padx=100, pady=10, command=payment_window)
 
 # Payment window
-payment = Window(main_app, title="Payment",width=400, height=400,visible=False)
-slider = Slider(payment, start=1, end=5, grid=[0,5])
-payment_optns = Combo(payment, options=["None Selected", "Credit", "Debit", "Cash"], selected="None Selected")
-next_btn = PushButton(payment, text="Next", padx=100, pady=10, command=summary_window)
+payment = Window(main_app, title="Payment",width=400, height=400,visible=False, layout="grid")
+text_tip = Text(payment, text="Tip Amount:", grid=[0, 1])
+text_paymethod = Text(payment, text="Payment Method:", grid=[0, 2])
+slider = Slider(payment, start=1, end=5, grid=[1, 1])
+payment_optns = Combo(payment, options=["None Selected", "Credit", "Debit", "Cash"], selected="None Selected", grid=[1, 2])
+next_btn = PushButton(payment, text="Next", padx=100, pady=10, command=summary_window, grid=[1, 3])
 
 #Summary window
 summary = Window(main_app, title="Summary", width=400, height=400,visible=False)
