@@ -22,8 +22,11 @@ def payment_window():
 
 def close_window():
     summary.hide()
-
+def add_optional():
+    choice_scndary = 1
 def summary_window():
+    add_cost_sndry = 0
+    text_final = []
     if choice_lunch.value == "Bread":
         add_cost_primary = 30
         loaf.show()
@@ -35,22 +38,21 @@ def summary_window():
         piece_french_toast.show()
     else:
         add_cost_primary = 0
-    if choice_sndry.value == "Dessert":
-        add_cost_sndry = 5
-        dessert.show()
-    elif choice_sndry.value == "Drink":
-        add_cost_sndry = 7
-        drink.show()
-    elif choice_sndry.value == "Condements":
-        add_cost_sndry= 20
-        ketchup.show()
-    else:
-        add_cost_sndry = 0
+
+    if check_Drink.value == 1:
+        add_cost_sndry += 2
+        text_final.append("Drink") 
+    if check_Dessert.value == 1:
+        add_cost_sndry += 5
+        text_final.append("Dessert") 
+    if check_Condements.value == 1:
+        add_cost_sndry += 10
+        text_final.append("Condements") 
 
     pay_method = Text(summary, text=f"Payment Method: {payment_optns.value}")
     total = Text(summary, text=f"Total: ${int(slider.value) + add_cost_sndry + add_cost_primary}")
     text_choice_lunch = Text(summary, f"Main Dish: {choice_lunch.value}")
-    text_choice_sndry = Text(summary, f"Optional Dish: {choice_sndry.value}")
+    text_choice_sndry = Text(summary, f"Optional Dish(s): {' '.join(text_final)}")
     next_btn = PushButton(summary, text="Close", grid=[1, 4],command=close_window, padx=100, pady=10)
     payment.hide()
     summary.show()
@@ -77,7 +79,10 @@ next_btn = PushButton(options, text="Next", padx=100, pady=10, command=optional_
 
 # Optional options window
 optional = Window(main_app, title="Optional",width=400, height=400,visible=False)
-choice_sndry = ButtonGroup(optional, options=["None Selected", "Drink", "Dessert", "Condements"], selected="None Selected")
+check_None = CheckBox(optional, text="None Selected", grid=[1, 5])
+check_Drink = CheckBox(optional, text="Drink", grid=[1, 6], command=lambda: drink.show())
+check_Dessert = CheckBox(optional, text="Dessert", grid=[1, 7], command=lambda: dessert.show())
+check_Condements = CheckBox(optional, text="Condements", grid=[1, 8], command=lambda: ketchup.show())
 next_btn = PushButton(optional, text="Next", padx=100, pady=10, command=payment_window)
 
 # Payment window
@@ -89,7 +94,7 @@ payment_optns = Combo(payment, options=["None Selected", "Credit", "Debit", "Cas
 next_btn = PushButton(payment, text="Next", padx=100, pady=10, command=summary_window, grid=[1, 3])
 
 #Summary window
-summary = Window(main_app, title="Summary", width=400, height=400,visible=False)
+summary = Window(main_app, title="Summary", width=800, height=800,visible=False)
 
 #images
 loaf = Picture(summary, image="assets\loaf.png", width=100, height=100, visible=False)
