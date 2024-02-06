@@ -14,6 +14,10 @@ full_dict.pop("Afghanistan")
 
 print(full_dict)
 
+full_dict.pop("Albania")
+
+print(full_dict)
+
 full_dict.popitem()
 
 print(full_dict)
