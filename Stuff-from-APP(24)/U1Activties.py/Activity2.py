@@ -18,3 +18,6 @@ animal_dict = {1: "Dog", 2: "Cat", 3: "Fish", 4: "Elephant", 5: "Horse"}
 string_dict = {"Ice": 121, "Tiger": 435, "Lion": 234, "Elephant": 345}
 
 country_dict = {"USA": "Washington D.C", "UK": "London", "Canada": "Ottawa", "France": "Paris", "Russia": "Moscow"}
+
+vegetable_dict = dict(name = "Carrots", price = 2.50)
+print(vegetable_dict)
