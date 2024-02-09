@@ -1,6 +1,14 @@
-dict = {"name": "John", "age": 30, "city": "New York"}
+import itertools 
+my_list = ["a", "A", "c", "C", "d", "D", "e", "E"]
+print(type(my_list))
 
-for key, value in dict.items():
-    print(key, value)
+#convert list into iterator
+my_list_iter = iter(my_list) 
 
-{x: x**2 for x in (2, 4, 6)}
+print(type(my_list_iter))
+
+my_list_dict_object = itertools.zip_longest(my_list_iter, my_list_iter, fillValue=None)
+
+my_list_dict = dict(my_list_dict_object)
+
+print(my_list_dict)
