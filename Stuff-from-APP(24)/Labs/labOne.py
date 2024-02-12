@@ -1,5 +1,6 @@
+#Dictionary to store students and their grades
 students = {"John": 88, "Jane": 92, "Jake": 90, "Molly": "A", "Mary": "B", "Nick": 75}
-
+#Dictionary to store the letter and their associated grade
 letters = {"A": 90, "B": 80, "C": 70, "D": 60, "F": 49}
 #Main function to call ther other functions to organize things
 def main():
@@ -82,5 +83,6 @@ def grade_summary():
     #Prints the average grade of the dictionary
     print(f"{round(total_score / len(students), 2)} is the average grade!")
 
+#Runs if ran on the main file
 if __name__ == "__main__":
     main()
