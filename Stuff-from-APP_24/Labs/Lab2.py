@@ -36,12 +36,11 @@ def inorder(node):
 
 
 class Node:
+    #Initializes the nodes values alogn with each of its subtrees
     def __init__(self, data):
         self.data = data
         self.leftChild = None
         self.rightChild = None
-    def __repr__(self):
-         return str(self.data)
 # Function to insert in BST
     def insert(self, data):
         # if value is lesser than the value of the parent node
@@ -63,14 +62,12 @@ class Node:
 
 # Creating root node
 root = Node(3)
+
 # Inserting values in BST
 root.insert(1)
 root.insert(4)
 root.insert(2)
 root.insert(5)
-
-# printing BST
-# root.PrintTree()
 
 postorder(root)
 print()
