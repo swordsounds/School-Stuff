@@ -1,4 +1,4 @@
-#This is the functuon to check if word is a palindrome
+#This is the function to check if word is a palindrome
 def palindromeCheck(string):
     #Base case
     if len(string) == 0:
