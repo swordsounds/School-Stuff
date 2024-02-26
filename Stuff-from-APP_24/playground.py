@@ -1,55 +1,32 @@
-# Recursive Python program for level
-# order traversal of Binary Tree
+class Solution:
+    def findMode(self, root):
 
-# A node structure
-class Node:
-	# A function to create a new node
-	def __init__(self, key):
-		self.data = key
-		self.left = None
-		self.right = None
+        self.count = 0  #count of concurrent elements
+        self.maxc = 0  #maximum count is stored
+        self.val = -999  #value of element
+        res = []  #resultant array
 
-# Function to print the level order traversal of tree
-def printLevelOrder(root):
-	h = height(root)
-	for i in range(1, h+1):
-		printGivenLevel(root, i)
+        def order(root):
+            if not root:
+                return
+            order(root.left)
+            if self.val == root.val:
+                self.count += 1
+            else:
+                self.count = 0
+                self.val = root.val
+            if self.maxc < self.count:
+                res.clear()
+                res.append(root.val)
+            elif self.maxc == self.count:
+                res.append(root.val)
+            self.maxc = max(self.maxc, self.count)
+            order(root.right)
 
+        order(root)
+        return res
 
-# Print nodes at any given level
-def printGivenLevel(root , level):
-	if root is None:
-		return
-	if level == 1:
-		print(root.data,end=" ")
-	elif level > 1 :
-		printGivenLevel(root.left , level-1)
-		printGivenLevel(root.right , level-1)
+root = [1, None, 2, 2]  
+sol = Solution()
 
-""" Gets the height of a tree--the number of nodes
-	along the longest path from the root node down to
-	the farthest leaf node
-"""
-def height(node):
-	if node is None:
-		return 0
-	else :
-		# Compute the height of each subtree
-		lheight = height(node.left)
-		rheight = height(node.right)
-
-		#Use the larger one
-		if lheight > rheight :
-			return lheight+1
-		else:
-			return rheight+1
-
-# Driver program to test above function
-root = Node(1)
-root.left = Node(2)
-root.right = Node(3)
-root.left.left = Node(4)
-root.left.right = Node(5)
-
-print("Level order traversal of binary tree is -")
-printLevelOrder(root)
+sol.findMode(root)
