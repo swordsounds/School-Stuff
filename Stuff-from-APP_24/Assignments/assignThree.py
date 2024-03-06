@@ -1,7 +1,3 @@
-
-# Create three instances of the Student class and demonstrate the functionality of the methods. Initialize
-# the attributes and manipulate the GPA using the methods. Display the student information before and
-# after studying.
 def main():
     #Created class called Student
     class Student:
@@ -16,6 +12,7 @@ def main():
         def set_gpa(self, gpa):
             if gpa >= 0.0:
                 if gpa > 4.0:
+                    print(f"{self.name} has invalid GPA value of {self.__gpa}")
                     self.__gpa = 4.0
                 else:
                     self.__gpa = gpa
@@ -30,7 +27,8 @@ def main():
             return self.__gpa
         #Displays the students attributes
         def display_student_info(self):
-            print(self.name, self.age, self.student_id, self.get_gpa())
+            print(f"Student {self.name} with ID {self.student_id}"
+                  f", age {self.age} has GPA of {self.get_gpa()}")
 
     #Created three instances of Student object
     s1 = Student("Matt", 17, "000X2f")
@@ -39,19 +37,21 @@ def main():
 
     s1.set_gpa(4.0)
     s2.set_gpa(3.0)
-    s3.set_gpa(2.0)
-
+    s3.set_gpa(1.0)
+    print("---BEFORE---")
     s1.display_student_info()
     s2.display_student_info()
     s3.display_student_info()
-    print("---BEFORE -> AFTER---")
-    s1.study(20)
-    s2.study(20)
-    s3.study(20)
-
+    print("-----------")
+    s1.study(5)
+    s2.study(5)
+    s3.study(5)
+    print("---AFTER---")
     s1.display_student_info()
     s2.display_student_info()
     s3.display_student_info()
+    print("-----------")
 
+#Calls function main if the module is the main module
 if __name__ == "__main__":
     main()
