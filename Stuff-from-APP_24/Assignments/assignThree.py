@@ -38,19 +38,19 @@ def main():
     s1.set_gpa(4.0)
     s2.set_gpa(3.0)
     s3.set_gpa(1.0)
-    print("---BEFORE---")
+    print("---BEFORE STUDYING---")
     s1.display_student_info()
     s2.display_student_info()
     s3.display_student_info()
-    print("-----------")
+    print("---------------------")
     s1.study(5)
     s2.study(5)
     s3.study(5)
-    print("---AFTER---")
+    print("---AFTER STUDYING---")
     s1.display_student_info()
     s2.display_student_info()
     s3.display_student_info()
-    print("-----------")
+    print("--------------------")
 
 #Calls function main if the module is the main module
 if __name__ == "__main__":
