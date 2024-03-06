@@ -25,25 +25,29 @@ def main():
             self.age = age
             self.student_id = student_id
             self.__gpa = 0
+
         def set_gpa(self, gpa):
-            if gpa >= 0 and gpa <= 4.0:
+            self._gpa = 4.0
+            if gpa >= 0:
                 self.__gpa = gpa
         
         def get_gpa(self):
             return self.__gpa
+        
         def study(self, hours):
             gpa += (hours / 10)
             self.set_gpa(gpa)
+
         def display_student_info(self):
-            return self.name, self.age, self.student_id, self.get_gpa()
+            print(self.name, self.age, self.student_id, self.get_gpa())
 
     s1 = Student("Matt", 17, "000X2f")
     s2 = Student("Nick", 17, "000D6Q")
     s3 = Student("Paul", 17, "000R3R")
 
-    print(s1.display_student_info())
-    print(s2.display_student_info())
-    print(s3.display_student_info())
+    s1.display_student_info()
+    s2.display_student_info()
+    s3.display_student_info()
 
 if __name__ == "__main__":
     main()
