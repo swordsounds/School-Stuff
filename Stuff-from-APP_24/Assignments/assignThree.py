@@ -27,16 +27,20 @@ def main():
             self.__gpa = 0
 
         def set_gpa(self, gpa):
-            self._gpa = 4.0
-            if gpa >= 0:
-                self.__gpa = gpa
-        
+            if gpa >= 0.0:
+                if gpa > 4.0:
+                    self.__gpa = 4.0
+                else:
+                    self.__gpa = gpa
+            else:
+                print(f"{self.name} has invalid GPA value of {self.__gpa}")
+            
+        def study(self, hours):
+            self.__gpa += (hours / 10)
+            self.set_gpa(self.__gpa)
+
         def get_gpa(self):
             return self.__gpa
-        
-        def study(self, hours):
-            gpa += (hours / 10)
-            self.set_gpa(gpa)
 
         def display_student_info(self):
             print(self.name, self.age, self.student_id, self.get_gpa())
@@ -44,6 +48,18 @@ def main():
     s1 = Student("Matt", 17, "000X2f")
     s2 = Student("Nick", 17, "000D6Q")
     s3 = Student("Paul", 17, "000R3R")
+
+    s1.set_gpa(4.0)
+    s2.set_gpa(3.0)
+    s3.set_gpa(2.0)
+
+    s1.study(10)
+    s2.study(20)
+    s3.study(15)
+
+    s1.get_gpa()
+    s2.get_gpa()
+    s3.get_gpa()
 
     s1.display_student_info()
     s2.display_student_info()
