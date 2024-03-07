@@ -12,7 +12,7 @@ def main():
         def brake(self, value):
             self.speed -= value
             return self.speed
-
+        # Method called brake that will increase the speed of the vehicle
         def speed_up(self, value):
             self.speed += value
             return self.speed
@@ -62,9 +62,11 @@ def main():
     c.speed_up(100)
     c.brake(20)
 
+    #Calls the refuel method
     c.refuel(10.1)
     c.refuel(40)
 
+    # Calls the show method of each subclass
     b.show()
     c.show()
 
