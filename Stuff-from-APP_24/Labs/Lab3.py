@@ -2,7 +2,7 @@ def main():
     # Defined a base class "Vehicle" with the following attributes
     class Vehicle:
         #Created an __init__ method inside the class to initialize the attributes
-        def __init__(self, make, model, year, speed):
+        def __init__(self, make, model, year, speed=0.0):
             self.make = make
             self.model = model
             self.year = year
@@ -16,7 +16,8 @@ def main():
         def speed_up(self, value):
             self.speed += value
             return self.speed
-    
+        def show(self):
+            print(f" The {self.model} model {self.year} {self.make}")
     # Created subclass "Car" that inherits from "Vehicle"
     class Car(Vehicle):
         def __init__(self, *args, speed=0.0, fuel_level=0.0):
@@ -69,6 +70,12 @@ def main():
     # Calls the show method of each subclass
     b.show()
     c.show()
+
+    b = Vehicle("Bike", "Generic", 2024)
+    c = Vehicle("Toyota", "Corolla", 1997)
+    b.show()
+    c.show()
+
 
 # Runs main function if the module is the main module
 if __name__ == "__main__":
