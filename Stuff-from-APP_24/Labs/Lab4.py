@@ -5,23 +5,26 @@
 # NotEnoughCaffeineError. This startup runs on
 # coffee, after all.
 
-def main():
-    class Monitor:
-        #Initial attributes of cups
-        def __init__(self, cups):
-            self.cups = cups
-        #Method to detemine the output
-        def caffiene(self):
-            if self.cups < 2:
-                #raises a custum expectyion when the input is less than 2
-                raise Exception("NotEnoughCaffeineError")
-            else:
-                return "Success"
+#Creates a custum exception
+class CustomException(Exception):
+    pass
 
-    #Initializes an objct of Monitor
-    m = Monitor(int(input("Please enter cups of joe: ")))
-    #Prints the values that would be returned depending on the cups of coffee
-    print(m.caffiene())
+#function to handle the input
+def get_coffee(n):
+    #Raises custom exception when cups are less than 2
+    if n < 2:
+        raise CustomException("NOT ENOUGH CAFFEIENE!")
+    else:
+        #prints if cups are greater than 2
+        print("GREAT SUCCESS")
+
+def main():
+    #try and except to catch the custom exception and prints its
+    try:
+        get_coffee(int(input("Enter number: ")))
+    except CustomException as e:
+        print(f"Custom exception: {e}")
+
 
 #Runs the main function is the name of this module is "main"
 if __name__ == "__main__":
