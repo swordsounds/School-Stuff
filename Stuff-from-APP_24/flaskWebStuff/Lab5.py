@@ -43,7 +43,7 @@ def greeting(name):
     return '<h1>Hello, {}!</h1>'.format(escape(name))
 @app.route('/farewell/<name>')
 def farewell(name):
-    user = {'username: <name>'}
+    user = {'username:', name}
     return render_template('bye.html', title='Goodbye', user=user)
 
 if __name__ == '__main__':
