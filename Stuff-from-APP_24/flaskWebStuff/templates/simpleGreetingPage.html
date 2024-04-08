@@ -6,7 +6,8 @@
     <title>Document</title>
 </head>
 <body>
-    {% if user %}
+    <!-- Django conditonals to check if the returned 'user' name -->
+    {% if user == Guest %}
         <h1>Hello Guest!</h1>
     {% else %}
         <h1>Hello, {{ user }}!!!!</h1>
