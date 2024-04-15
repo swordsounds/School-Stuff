@@ -1,0 +1,10 @@
+{
+    "subway-surfers.customSources": [
+        {
+            "label": "Soap videos",
+            "videos" : ["a2vzWDqJRKg", "GdALx9LS_uY", "BZ6xsmyQsZQ"],
+            "width": 300,
+            "muted": true
+    },
+    ]
+}
