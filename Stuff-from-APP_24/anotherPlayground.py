@@ -2,4 +2,7 @@ import pandas as pd
 
 import numpy as np
 
-series = pd.Series([1,2,3,4,5])
+data = np.array([1,2,3,np.nan,5])
+
+series = pd.Series(data)
+
