@@ -1,11 +1,14 @@
 from multiprocessing import Process
-import playground as Graph
 import dataGenerator as data
+import playground as Graph
 
-def process():
+def function():
     data.main()
-
-if __name__ == "__main__":
-    Graph.main()
-    p = Process(target=process)
+    
+def main():
+    p = Process(target=function)
     p.start()
+    Graph.main()
+    
+if __name__ == "__main__":
+     main()

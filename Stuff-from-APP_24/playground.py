@@ -5,13 +5,6 @@ import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 
 plt.style.use('fivethirtyeight')
-
-x_vals = []
-y_vals = []
-
-index = count()
-
-
 def animate(i):
     data = pd.read_csv('data.csv')
     x = data['x_value']
