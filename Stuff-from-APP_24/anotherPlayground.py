@@ -7,8 +7,8 @@ class FloatSpinbox(customtkinter.CTkFrame):
     def __init__(self, *args,
                  width: int = 100,
                  height: int = 32,
-                 step_size:1,
-                 command:  None,
+                 step_size: Union[int, float] = 1,
+                 command: Callable = None,
                  **kwargs):
         super().__init__(*args, width=width, height=height, **kwargs)
 
@@ -63,7 +63,7 @@ class FloatSpinbox(customtkinter.CTkFrame):
     def set(self, value: float):
         self.entry.delete(0, "end")
         self.entry.insert(0, str(float(value)))
-
+        
 app = customtkinter.CTk()
 app.title("my app")
 app.geometry("400x150")
