@@ -16,6 +16,7 @@ def main():
     #Part 2: Check for any duplicate records in the data. Discuss why it might be important to remove duplicates.
 
     print('Sum of Null Values:\n',df.isnull().sum(),'\n--------------------------------\n')
+    print('Sum of Duplicates:\n',df.duplicated(),'\n--------------------------------\n')
     df = df.fillna(np.mean(df['RunTime'])).drop_duplicates()
 
 
@@ -32,8 +33,8 @@ def main():
     #Investigate how many unique values are in the WeatherConditions to understand the variety of weather conditions recorded.
     print('Weather Types:\n',df['WeatherConditions'].unique(),'\n--------------------------------\n')
     #Get summary statistics with describe and explore relationships with corr.
-    print(df.describe())
-    print(df['RunTime'].describe().corr(df['SlopeDifficulty'].map(Difficulty_Index), method='pearson'),'\n--------------------------------\n')
+    print('Summary of stats:\n',df.describe(),'\n--------------------------------\n')
+    print('Correlation of RunTime w/ SlopeDiff:\n',df['RunTime'].corr(df['SlopeDifficulty'].map(Difficulty_Index), method='pearson'),'\n--------------------------------\n')
 
 
     #Part 4: Add a new column that might help in understanding the data better, such as a performance score derived from RunTime and SlopeDifficulty.
