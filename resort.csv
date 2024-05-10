@@ -1,0 +1,11 @@
+SkierID,SkierName,RunTime,SlopeDifficulty,Date,WeatherConditions
+1,Alice,,Intermediate,2023-01-15,Snowy
+2,Bob,110,Advanced,2023-01-15,Clear
+3,Charlie,150,Expert,2023-01-16,Windy
+4,Diana,130,Beginner,2023-01-17,Snowy
+5,Eli,105,Intermediate,2023-01-18,Clear
+6,Fiona,120,Advanced,2023-01-19,Windy
+7,Gary,110,Beginner,2023-01-20,Snowy
+8,Hannah,125,Intermediate,2023-01-21,Clear
+9,Ian,,Expert,2023-01-22,Windy
+10,Jessica,135,Beginner,2023-01-23,Snowy
