@@ -3,16 +3,12 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 params = {
-          'figure.figsize': (15, 14),
-        #  'axes.labelsize': 'large',
-        #  'axes.titlesize':'large',
-        #  'xtick.labelsize':'x-small',
-        #  'ytick.labelsize':'x-small',
-         'toolbar' : 'None'
-         }
+        'figure.figsize': (15, 14),
+        'toolbar' : 'None'
+        }
 plt.rcParams.update(params)
 fig, axes = plt.subplots(nrows=4, ncols=2)
-fig.suptitle("Graphs")
+
 df = pd.read_csv('videogames.csv')
 # o Check for any missing values in the 'Year' and 'Global_Sales' columns and handle them
 print(df.isnull().sum())
@@ -33,7 +29,7 @@ def TotalGamesPerYear():
 # Platform Popularity: Identify the platform with the highest number of releases and visualize all platforms' releases using a bar chart.
 def HighestReleasesPerPlatform():
     data = df.groupby(['Platform'])['Name'].agg({'count'})
-    axes[1,0].bar(data.index, data['count'])
+    axes[1,0].bar(data.index, data['count'], color=('grey', 'blue', 'red', 'green'))
     axes[1,0].set_xlabel('Platforms')
     axes[1,0].set_ylabel('Total Releases')
     axes[1,0].set_title('Total Releases Per Platform')
@@ -42,7 +38,8 @@ def HighestReleasesPerPlatform():
 # Top Selling Games: List the top 5 best-selling games of all time in a formatted table.
 def TopFiveBestSelling(df):
     df = df.sort_values(by=['Global_Sales'], ascending=False).head()
-    axes[2, 0].table(cellText=df.values, colLabels=df.columns, loc='center')
+    table = axes[2,0].table(cellText=df.values, colLabels=df.columns, loc='center')
+    table.scale(1, 2)
     axes[2,0].set_axis_off()
 
 # Genre Popularity: Create a pie chart to show the market share of each game genre based on global sales.
@@ -95,14 +92,7 @@ plt.subplots_adjust(left=0.06,
                     top=0.9,
                     wspace=0.12,
                     hspace=0.99)
-
+plt.suptitle("Graphs")
 plt.show()
-
-
-
-
-
-
-# Visualizations: Appropriately labeled plots with interpretations for each visualization included in the analysis.
 
 #  For each plot, include a title, labels for x and y axes, and a legend if applicable.
