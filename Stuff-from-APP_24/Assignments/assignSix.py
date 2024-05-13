@@ -10,8 +10,10 @@ plt.rcParams.update(params)
 fig, axes = plt.subplots(nrows=4, ncols=2)
 
 df = pd.read_csv('videogames.csv')
+
 # o Check for any missing values in the 'Year' and 'Global_Sales' columns and handle them
 print(df.isnull().sum())
+
 # by filling missing years with the median year and sales with the mean sales value.
 df = df.fillna({'Year': df['Year'].median(), 'Global_Sales': df['Global_Sales'].mean()})
 df = df.drop_duplicates()
@@ -20,7 +22,8 @@ df['Year'] = df['Year'].map(lambda x: float(x))
 
 # Yearly Game Releases: Calculate and visualize the total number of games released each year using a line graph.
 def TotalGamesPerYear():
-    data = df.groupby(['Year'])['Name'].agg('count')
+    # groups the df by year, collects all names and uses pandas .agg() with passed in function count to count the games
+    data = df.groupby(['Year'])['Name'].agg('count') 
     axes[0,0].plot(data, marker='o')
     axes[0,0].set_xlabel('Years')
     axes[0,0].set_ylabel('Games Released')
@@ -28,6 +31,7 @@ def TotalGamesPerYear():
 
 # Platform Popularity: Identify the platform with the highest number of releases and visualize all platforms' releases using a bar chart.
 def HighestReleasesPerPlatform():
+    # groups the df by platform, collects all names and uses pandas .agg() with passed in function count, thats also an object that adds an axis 
     data = df.groupby(['Platform'])['Name'].agg({'count'})
     axes[1,0].bar(data.index, data['count'], color=('grey', 'blue', 'red', 'green'))
     axes[1,0].set_xlabel('Platforms')
@@ -37,6 +41,7 @@ def HighestReleasesPerPlatform():
 
 # Top Selling Games: List the top 5 best-selling games of all time in a formatted table.
 def TopFiveBestSelling(df):
+    # Sorts values in decending order, grabs the head (5 values)
     df = df.sort_values(by=['Global_Sales'], ascending=False).head()
     table = axes[2,0].table(cellText=df.values, colLabels=df.columns, loc='center')
     table.scale(1, 2)
@@ -44,12 +49,14 @@ def TopFiveBestSelling(df):
 
 # Genre Popularity: Create a pie chart to show the market share of each game genre based on global sales.
 def GenrePopularity():
+    # groups the df by genre, collects all sales and uses pandas.agg() with passed in function sum, thats also an object that adds an axis
     data = df.groupby(['Genre'])['Global_Sales'].agg({'sum'})
     axes[0,1].pie(data['sum'], labels=data.index, autopct='%1.1f%%')
     axes[0,1].set_title('Genre Popularity')
 
 # o Sales vs. Year Scatter Plot: Generate a scatter plot to explore the relationship between the year of release and global sales, including a trend line.
 def SalesVsYear():
+    # groups the df by year, collects all sales and uses pandas.agg() with passed in function sum, thats also an object that adds an axis
     data = df.groupby(['Year'])['Global_Sales'].agg({'sum'})
     axes[1,1].plot(data.index, data['sum'], marker='o')
     axes[1,1].set_xlabel('Years')
@@ -67,6 +74,7 @@ def SalesPerPlatform():
 
 # o Annual Sales Trends: Compute and plot the total global sales per year to see how video game sales have evolved.
 def AnnualSalesTrend():
+    # groups the df by year, collects all sales and uses pandas.agg() with passed in function sum, thats also an object that adds an axis
     data = df.groupby(['Year'])['Global_Sales'].agg({'sum'})
     axes[3,0].scatter(data.index, data['sum'])
     axes[3,0].set_title('Annual Sales')
@@ -74,9 +82,10 @@ def AnnualSalesTrend():
     axes[3,0].set_ylabel('Global Sales (millions)')
     axes[3,1].set_visible(False)
 
-    line = np.polyfit(data.index, data['sum'], 1)
-    line1 = np.poly1d(line)
-    axes[3,0].plot(data.index, line1(data.index),'r--')
+    # Creates a line of best fit, variable names are arbitrarily chosen
+    x = np.polyfit(data.index, data['sum'], 1)
+    y = np.poly1d(x)
+    axes[3,0].plot(data.index, y(data.index),'r--')
 
 TotalGamesPerYear()
 HighestReleasesPerPlatform()
@@ -94,5 +103,3 @@ plt.subplots_adjust(left=0.06,
                     hspace=0.99)
 plt.suptitle("Graphs")
 plt.show()
-
-#  For each plot, include a title, labels for x and y axes, and a legend if applicable.
