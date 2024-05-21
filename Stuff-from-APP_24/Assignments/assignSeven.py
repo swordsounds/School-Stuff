@@ -55,10 +55,10 @@ def Ratings():
 # A scatter plot to explore any relationships between duration and release year (choose appropriate variables like duration for movies and seasons for TV shows).
 def DurationVsYear():
     movies = df[df['type'] == 'Movie']
-    axes[2,0].scatter(movies['release_year'].sort_values(ascending=False), movies['duration'].map(lambda x: x.split(' ')[0]))
+    axes[2,0].scatter(movies['release_year'].sort_values(ascending=False), movies['duration'].map(lambda x: x.split(' ')[0]).sort_values(ascending=False))
 
     shows = df[df['type'] == 'TV Show']
-    axes[2,1].scatter(shows['release_year'].sort_values(ascending=False), shows['duration'].map(lambda x: x.split(' ')[0]).sort_values(ascending=True))
+    axes[2,1].scatter(shows['release_year'].sort_values(ascending=False), shows['duration'].map(lambda x: x.split(' ')[0]).sort_values(ascending=False))
 
 
  
