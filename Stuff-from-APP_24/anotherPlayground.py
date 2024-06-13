@@ -124,3 +124,26 @@ print ("\nSport and number of players: \n", s1)
 # baseball      22
 # soccer        26
 # dtype: int6
+
+import numpy as np
+import pandas as pd
+
+sport = ['ultimate', 'basketball', 'baseball', 'soccer']
+playersHS = [20, 32, 22, 26]
+playersJH = [33, 45, 25, 35]
+s1 = pd.Series(playersHS, index= sport)
+s2 = pd.Series(playersJH, index= sport)
+print ("\nSport and number of players: \n", s1 + s2)
+print("Sum of players in High School: ", sum(s1))
+print("Sum of players in Junior High: ", sum(s2))
+
+
+# Output
+# Sport and number of players: 
+# ultimate      53
+# basketball    77
+# baseball      47
+# soccer        61
+# dtype: int64
+# Sum of players in High School:  100
+# Sum of players in Junior High:  138
