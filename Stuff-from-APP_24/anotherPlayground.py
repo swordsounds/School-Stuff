@@ -1,88 +1,126 @@
-import customtkinter
-
-def button_callback():
-    print("button pressed")
-
-class FloatSpinbox(customtkinter.CTkFrame):
-    def __init__(self, *args,
-                 width: int = 100,
-                 height: int = 32,
-                 step_size: Union[int, float] = 1,
-                 command: Callable = None,
-                 **kwargs):
-        super().__init__(*args, width=width, height=height, **kwargs)
-
-        self.step_size = step_size
-        self.command = command
-
-        self.configure(fg_color=("gray78", "gray28"))  # set frame color
-
-        self.grid_columnconfigure((0, 2), weight=0)  # buttons don't expand
-        self.grid_columnconfigure(1, weight=1)  # entry expands
-
-        self.subtract_button = customtkinter.CTkButton(self, text="-", width=height-6, height=height-6,
-                                                       command=self.subtract_button_callback)
-        self.subtract_button.grid(row=0, column=0, padx=(3, 0), pady=3)
-
-        self.entry = customtkinter.CTkEntry(self, width=width-(2*height), height=height-6, border_width=0)
-        self.entry.grid(row=0, column=1, columnspan=1, padx=3, pady=3, sticky="ew")
-
-        self.add_button = customtkinter.CTkButton(self, text="+", width=height-6, height=height-6,
-                                                  command=self.add_button_callback)
-        self.add_button.grid(row=0, column=2, padx=(0, 3), pady=3)
-
-        # default value
-        self.entry.insert(0, "0.0")
-
-    def add_button_callback(self):
-        if self.command is not None:
-            self.command()
-        try:
-            value = float(self.entry.get()) + self.step_size
-            self.entry.delete(0, "end")
-            self.entry.insert(0, value)
-        except ValueError:
-            return
-
-    def subtract_button_callback(self):
-        if self.command is not None:
-            self.command()
-        try:
-            value = float(self.entry.get()) - self.step_size
-            self.entry.delete(0, "end")
-            self.entry.insert(0, value)
-        except ValueError:
-            return
-
-    def get(self):
-        try:
-            return float(self.entry.get())
-        except ValueError:
-            return None
-
-    def set(self, value: float):
-        self.entry.delete(0, "end")
-        self.entry.insert(0, str(float(value)))
-        
-app = customtkinter.CTk()
-app.title("my app")
-app.geometry("400x150")
-app.grid_columnconfigure((0, 1), weight=1)
-
-button = customtkinter.CTkButton(app, text="my button", command=button_callback)
-button.grid(row=0, column=0, padx=20, pady=20, sticky="ew", columnspan=2)
+import numpy as np
+array1 = np.random.randint(0,100,size=(4,10))
+print (array1)
 
 
-checkbox_1 = customtkinter.CTkCheckBox(app, text="checkbox 1")
-checkbox_1.grid(row=1, column=0, padx=20, pady=(0, 20), sticky="w")
-checkbox_2 = customtkinter.CTkCheckBox(app, text="checkbox 2")
-checkbox_2.grid(row=1, column=1, padx=20, pady=(0, 20), sticky="w")
+# Output:
+
+# [[68 56 72 91 64 98  3 54 49 67]
+# [ 1  6 54 65 24 97 68  9 28 47]
+# [30 88 52 11 22 12 35 65 66  3]
+# [13 83 81 32 87 74 79 34 26  1]]
+
+#ceate a mask showing numbers greater than 70.
+
+mask = array1 > 70
+
+print(mask)
 
 
-spinbox_1 = FloatSpinbox(app, width=150, step_size=3)
-spinbox_1.pack(padx=20, pady=20)
+# Output
 
-spinbox_1.set(35)
-print(spinbox_1.get())
+# [[False False  True  True False  True False False False False]
+# [False False False False False  True False False False False]
+# [False  True False False False False False False False False]
+# [False  True  True False  True  True  True False False False]]
 
-app.mainloop()
+#Use the mask to extract the numbers:
+
+print (array1[mask])
+
+
+# Output
+# [72 91 98 97 88 83 81 87 74 79]
+
+			
+# Using any and all
+# NumPy any() function is used to check whether an array element along the mentioned axis evaluates to True or False. If there is an element in a particular axis that is True, it returns True
+
+# Numpy all() function returns True only if all elements in a NumPy array evaluate to True
+
+
+print (mask.any())
+print (mask.all())
+
+
+# Output
+# True
+# False
+
+			
+
+# It can also be applied column-wise (by passing axis=1) or row-wise (by passing axis=1).
+
+
+print ('All tests in a column are true:')
+print (mask.all(axis=0))
+print ('\nAny test in a row is true:')
+print (mask.any(axis=1))
+
+
+# Outout:
+
+# All tests in a column are true:
+# [False False False False False False False False False False]
+
+# Any test in a row is true:
+# [False  True  True  True]
+
+			
+# Selecting rows or columns based on one value in that row or column
+
+#Select all columns where the value of the first element is equal to, or greater than 70:
+
+mask = array1[0,:] >= 70 # colon indicates all columns, zero indicates row 0
+print ('\nShowing the mask')
+print (mask)
+print ('\nThe mask applied to all columns')
+print (array1[:,mask]) # colon represents all rows of chosen columns
+
+
+# Output
+
+# Showing the mask
+# [False False False False False False  True False False False]
+
+# The mask applied to all columns
+# [[98]
+# [78]
+# [77]
+# [ 5]]
+
+import numpy as np
+import pandas as pd
+
+
+s1 = pd.Series([11, 28, 72, 3, 5, 8])
+print ("S is:\n",s1)
+
+# You can directly access the index and the values in a Series
+
+
+print(s1.index)
+print(s1.values)
+
+
+# Output
+# RangeIndex(start=0, stop=6, step=1)
+# [11 28 72  3  5  8]
+
+
+import numpy as np
+import pandas as pd
+
+sport = ['ultimate', 'basketball', 'baseball', 'soccer']
+players = [20, 32, 22, 26]
+s1 = pd.Series(players, index= sport) 
+print ("\nSport and number of players: \n", s1)
+
+
+# Output
+# Sport and number of players: 
+# ultimate      20
+# basketball    32
+# baseball      22
+# soccer        26
+# dtype: int6
