@@ -1,1 +1,1 @@
-Assignments and test from the CNA TCP program during highschool.
+Assignments and tests from the CNA TCP program during highschool.
