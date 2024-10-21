@@ -11,6 +11,7 @@ class Point:
 
 
     def __add__(self, other):
+        
         if isinstance(other, Point):
             x = self.x + other.x
             y = self.y + other.y
