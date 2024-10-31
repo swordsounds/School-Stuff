@@ -5,6 +5,8 @@ from periodictable import *
 
 pip install periodictable
 
+NOTE: Do this in the powershell terminal, also get python or a text editor to run.
+
 ''' 
 
 def menu():
