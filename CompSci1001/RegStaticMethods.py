@@ -59,7 +59,8 @@ class Manager(Employee):
 
     def print_emp(self):
         for emp in self.emps:
-            print("-->"emp.fullename())
+            print("-->", emp.fullename())
+
 dev_1 = Developer('Tim', "Li", 10000, 'Python')
 
 man_1 = Manager("Dan", "He", 90000, [dev_1])
