@@ -1,118 +1,75 @@
 class Node:
     def __init__(self, initdata):
         self.__data = initdata
-        self.__next = None
+        self.__pointer = None
+
+    def set_node(self, node):
+        self.__pointer = node
+    def get_node(self):
+        return self.__pointer
     
+    def set_data(self, data):
+        self.__data = data
     def get_data(self):
         return self.__data
-    def set_data(self, new_data):
-        self.__data = new_data
-    def get_next(self):
-        return self.__next
-    
-    def set_next(self, new_next):
-        self.__next = new_next
-    
+
 class LinkedList:
     def __init__(self):
         self.__head = None
         self.__size = 0
-
+    
+    def set_head(self, node):
+        self.__head = node
+    def get_head(self):
+        return self.__head
+    
+    def set_size(self, value):
+        self.__size = value
     def get_size(self):
         return self.__size
 
-    def is_empty(self):
-        return self.__size == 0
-    
-    def add(self, newdata):
-        temp = Node(newdata)
-        temp.set_next(self.__head)
-        self.__head = temp
-        self.__size += 1
-    
-    def print_list(self):
-        print("List of nodes:")
-
-        current = self.__head
-        while current != None:
-            print(current.get_data())
-            current = current.get_next()
-    
     def search(self, value):
-
         current = self.__head
-        
+
         while current != None:
             if current.get_data() == value:
                 return True
-            current = current.get_next()
+            current = current.get_node()
         return False
-    
-    def remove(self, value):
 
-        current = self.__head
-        previous = None
-        found = False
-
-        while current != None and not found:
-            if current.get_data() == value:
-                found = True
-            else:
-                previous = current
-                current = current.get_next()
-        
-        if found:
-            if previous == None:
-                self.__head = current.get_next()
-            else:
-                previous.set_next(current.get_next())
-            self.__size -= 1
+    def add(self, value):
+        temp = Node(value)
+        temp.set_node(self.__head)
+        self.__head = temp
+        self.__size += 1
     
     def append(self, value):
         temp = Node(value)
+        current = self.__head
 
-        if self.is_empty():
-            self.__head = temp
+        while current.get_node() != None:
+            current = current.get_node()
         
-        else:
-            current = self.__head
-            while current.get_next() != None:
-                current = current.get_next()
+        current.set_node(temp)
 
-            current.set_next(temp)
-        
-        self.__size += 1
-    
-    def insert(self, value, index):
-        if index <= 0:
-            self.add(value)
-        elif index >= self.__size:
-            self.append(value)
-        else:
-            current = self.__head
-            for i in range(0, index-1):
-                current = current.get_next()
-            
-            temp = Node(value)
-            temp.set_next(current.get_next())
-            current.set_next(temp)
-            self.__size += 1
+    def print_list(self):
+        current = self.__head
 
-    def get_size(self):
-        return self.__size
-    def set_size(self, size):
-        self.__size = size
-    def get_head(self):
-        return self.__head
-    def set_head(self, node):
-         self.__head = node
+        while current != None:
+            print(current.get_data(), end=" ")
+            current = current.get_node()
+
 def main():
+    with open("README.md") as f:
+        print(f.read())
 
-	ll = LinkedList()
-	ll.append(78)
-	ll.append(66)
-	ll.append(502)
-	ll.append(4)
-	ll.print_list()
+    x = LinkedList()
+    try:
+        x.add(1)
+        x.append(2)
+        print(x.search(3))
+        x.print_list()
+    except Exeption as e:
+        print(e)
 
 main()
