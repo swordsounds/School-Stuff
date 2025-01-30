@@ -11,8 +11,8 @@ def permutations(aSet):
   subset = aSet[1:]
 
   partial = permutations(subset)
-  for permutation in partial:
-    for index in range(len(aSet)):
+  for index in range(len(aSet)):
+    for permutation in partial:
       new_perm = list(permutation[:index])
       new_perm.extend(first_element)
       new_perm.extend(permutation[index:])
@@ -25,45 +25,36 @@ def permutations(aSet):
 # Given 'n' as input, generate a list of numbers from 2^n-1 down to 0
 def generateReverseOrder(n):
   # Implement me!
-  if not n:
-      return
-
-  for i in range(2**n):
-      s = bin(i)[2:]
-      s = "0" * (n - len(s)) + s
-      yield s
-  return []
+  if n == 0:
+    return ['']
+  
+  nextIter = generateReverseOrder(n-1)
+  
+  ret = []
+  
+  for bin in nextIter:
+    ret.append(bin + '1')
+    ret.append(bin + '0')
+    
+  return ret
 
 
 # Question 3
 # Return a 3-element integer list containing number of consonants, vowels,
 # and other characters (respectively) for the given string
-
-
-
-def countChars(s, score=[0,0,0]):
+def countChars(s,c=0,v=0,o=0):
   # Implement me!
-  vowels = ['a', 'e', 'i', 'o', 'u']
-  consonants = ['b','c','d','f','g','h','j','k','l','m','n','p',
-                'q','r','s','t','v','w','x','y','z']
-  other = [' ']
-
-  if len(s) <= 1:
-    return s
+  if len(s) == 0:
+    return [c, v, o]
+    
+  if s[0].lower() in 'aeiou':
+    v += 1
+  elif s[0].lower() in 'bcdfghjklmnpqrstvwxyz':  
+    c += 1
+  elif not s[0].lower().isalpha():
+    o += 1  
   
-
-  firstEl = s[0:1]
-  lastEl = countChars(s[1:])
-
-  if firstEl in vowels:
-    score[1] += 1
-  if firstEl in other:
-    score[2] += 1
-  if lastEl in vowels:
-    score[1] += 1
-  if firstEl in consonants:
-    score[0] += 1
-  return score
+  return countChars(s[1:], c, v, o)
 
 
 # --------------------------------------------------------
